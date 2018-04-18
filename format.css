@@ -1,0 +1,19 @@
+body, html{
+	font-family: Raleway, Sans-serif;
+	padding:25px 200px;
+}
+
+p{
+	line-height: 35px;
+    margin: 50px 0;
+    font-size: x-large;
+    font-weight: 100;
+}
+
+pre{
+	background: #ededed;
+}
+.center{
+	text-align: center;
+	margin:auto;
+}
