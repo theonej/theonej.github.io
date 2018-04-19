@@ -24,7 +24,7 @@
 			Long story short, I implemented a python module that calls tesseract fromt he command line to first convert the pdf to a tiff
 			image, then to ocr the tiff image and output the contents into a text file.
 		</p>
-		<h2>Convert PDF to TIFF</h2>
+		<h2>Convert PDF to TIFF, then OCR PDF and dump results to text file</h2>
 		<pre>
 			<code>
 	import os 
@@ -57,27 +57,6 @@
 			</code>
 		</pre>
 
-		<h2>OCR Tiff</h2>
-		<pre>
-			<code>
-	import os
-	import fnmatch
-
-	def ocr_file(file):
-		output_file = file.replace(".tif", "")
-
-		read_command = 'tesseract ' + file + ' ' + output_file
-		os.system(read_command)
-
-		text_file = output_file + ".txt"
-
-		contents = '';
-		with open(text_file, "r") as f:
-						for line in f:
-							contents = contents + '\n' + line
-		return contents
-			</code>
-		</pre>
 	</div>
 </body>
 </html>
