@@ -1,0 +1,135 @@
+<!DOCTYPE html lang="eng">
+<html>
+<head>
+	<title>Machine Learning with Octave - The normal equation</title>
+	<link href="../../format.css" type="text/css" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<div class="center">
+			<img src="../../img/example-mesh.svg">
+		</div>
+		<h1>Machine learning with Octave</h1>
+		<h2>The Challenge</h2>
+		<p>
+			I have been working on a system for a about a year now that uses machine learning to automate
+			the process of prior art searches for patent applications.
+
+			You can check it out <a href="https://contextum-ml.com" target="_blank">Here</a>.
+		</p>
+		<p>
+			Part of this system is a predictive model for determining if a patent is likely to be granted,
+			based on the description and claims of the patent that are submitted by the inventor.
+		</p>
+		<p>
+			Part of building this model is taking the results of a patent search against our system and aggregating
+			the scores that our system applies to search results, based on the similarity of results with the 
+			patent application documents.  Once these scores have been compiled, the scores are then used to generate
+			the model that will be applied to applications in the future to generate the prediction.
+		</p>
+		<h2>The Tools</h2>
+		<p>
+			There are numerous ways that you can build a predictive model of this type (linear regression, logistic regression, 
+			neural network, LSM, etc...).  One way to rapidly create a set of parameters (usually called Theta &Theta;) is to 
+			use what is known as <strong><a href="http://mathworld.wolfram.com/NormalEquation.html" target="_blank">
+			The Normal Equation<a/></strong>.
+		</p>
+		<p>
+			The normal equation basically uses matrix multiplication to create a vector of parameters (&Theta;) that can
+			then be used to parameterize your hypothesis.
+		</p>
+		<p>
+			A tool that I use to rapidly prototype ML models is <a href="https://www.gnu.org/software/octave/" target="_blank">Octave</a>.
+		</p>
+		<p>
+			Octave is an open-source programming language (sort of an open source R, or MatLab).  It has great tools for working with
+			matrices and vectors, as well as some great data visualization tools.
+		</p>
+		<h2>The Code</h2>
+		<p>
+			Assuming the following labeled data for our granted/denied applications:
+		</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Average Description Score</th>
+					<th>Average Abstract Score</th>
+					<th>Average Claim Score</th>
+					<th>Result Count</th>
+					<th>Claim Count</th>
+					<th>Label</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>0.209127</td><td>0</td><td>0.08297827</td><td>22</td><td>193</td><td>0</td></tr>
+				<tr><td>0.3183417</td><td>0</td><td>0.1539605</td><td>24</td><td>104</td><td>0</td></tr>
+				<tr><td>0.3157527</td><td>0</td><td>0.2221503</td><td>33</td><td>92</td><td>0</td></tr>
+				<tr><td>0.1852622</td><td>0</td><td>0.08021219</td><td>22</td><td>125</td><td>0</td></tr>
+				<tr><td>0.3880942</td><td>0</td><td>0.1843578</td><td>20</td><td>345</td><td>1</td></tr>
+				<tr><td>0.1974027</td><td>0</td><td>0.07139286</td><td>23</td><td>229</td><td>1</td></tr>
+				<tr><td>0.1393061</td><td>0</td><td>0.08676422</td><td>22</td><td>149</td><td>1</td></tr>
+				<tr><td>0.1776808</td><td>0</td><td>0.2192616</td><td>14</td><td>47</td><td>1</td></tr>
+			</tbody>
+		</table>
+		<p>
+			We can use Octave to create an implementation of the Normal Equation to output &Theta; that can be used
+			to generate a hypothesis:
+		</p>
+
+			<pre>
+				<code>
+	function theta = normal_equation(X, y)
+
+		#add theta 0
+		X = [ones(rows(X), 1) X];
+
+		theta = (pinv(X'*X))*X'*y;
+
+		return;
+	endfunction
+				</code>
+			</pre>
+		<p>
+			Now, if we read our data into a matrix (X) in the following format:
+		</p>
+		<pre>
+			<code>
+	0.20913     0.00000     0.08298    22.00000   193.00000
+	0.31834     0.00000     0.15396    24.00000   104.00000
+	0.31575     0.00000     0.22215    33.00000    92.00000
+	0.18526     0.00000     0.08021    22.00000   125.00000
+	0.38809     0.00000     0.18436    20.00000   345.00000
+	0.19740     0.00000     0.07139    23.00000   229.00000
+	0.13931     0.00000     0.08676    22.00000   149.00000
+	0.17768     0.00000     0.21926    14.00000    47.00000
+			</code>
+		</pre>
+		<p>
+			and we put our labels into a separate vector (y):
+		</p>
+		<pre>
+			<code>
+	0   0   0   0   1   1   1   1
+			</code>
+		</pre>
+		<p>
+			We can then use the Normal Equation to create our hyper parameters &Theta; using:
+		</p>
+		<pre>
+			<code>
+	theta = normal_equation(X, y)
+			</code>
+		</pre>
+		<p>
+			Which will output a set of parameters that can then be used when generating a hypothesis (in this particular case
+			my theta was [4.1128e-01  -6.9113e+00  -6.0855e-14   7.9536e+00  -1.4074e-02   6.0989e-03])
+		</p>
+		<strong>NOTE: With the matrix/vector representations above you will need to invert y by calling y=y' in Octave</strong>
+		<p>
+			And that's it.  You now have a basis for using the Normal Equation to generate theta parameters that can be used
+			to generate hypothesis for your data!
+		</p>
+	</div>
+</body>
+</html>
