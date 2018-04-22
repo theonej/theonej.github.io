@@ -2,13 +2,27 @@
 layout: default
 ---
 
-<h2 class="post_title">
-  {{ page.title }}
-  {% if page.date %}
-    <small>{{ page.date | date_to_string }}</small>
-  {% endif %}
-</h2>
+---
+layout: default
+title: Elasticsearch with C#
+---
 
-{{ content }}
+<!DOCTYPE html lang="eng">
+<html>
+<head>
+	<title>Elasticsearch with C#</title>
+	<link href="../format.css" type="text/css" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+	<div>
+		{{ content }}
+	</div>
+	<div>
+		{% include comments.html %}
+	</div>
+</body>
+</html>
 
-{% include disqus.html %}
+
+
