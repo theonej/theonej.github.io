@@ -1,11 +1,8 @@
-<html>
-	<head>
-		<title>J Henry</title>
-		<link href="format.css" type="text/css" rel="stylesheet"/>
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	</head>
-	<body>
-		<div>
+---
+layout: default
+title: J Henry's development blog
+---
+	<div>
 			<h1>Introduction</h1>
 			<p>
 				My name is J Henry.  I am a software architect and engineer, an engineering manager and machine-learning enthusiast.
@@ -14,13 +11,9 @@
 				On this page, I will share some of my thoughts on software engineering in general, and particular solutions I have found to problems
 			</p>
 		</div>
-		<div>
-			<h3>Quick Reads</h3>
-			<ul>
-				<li><a href="2018/04/tesseract.html">OCR with Tesseract and Python</a></li>
-				<li><a href="2018/04/octave.html">The Normal Equation with Octave</a></li>
-				<li><a href="2018/04/elasticsearch.html">Elasticsearch with c#</a></li>
-			</ul>
-		</div>
-	</body>	
-</html>
+	<ul class="posts">
+
+	  {% for post in site.posts %}
+	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	  {% endfor %}
+	</ul>
