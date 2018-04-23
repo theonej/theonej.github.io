@@ -1,0 +1,88 @@
+---
+layout: default
+title: Elasticsearch with C#
+comments: true
+---
+
+<div>
+	<div class="center">
+		<img src="../../../img/aws-lambda.jpg">
+	</div>
+	<h1>Building Serverless Microservices with Lambda</h1>
+	<div>
+		<p>
+			One of the early design decisions I made for <a href="https://contextum-ml.com" target="_blank">Contextum</a> was to have it built
+			with a micro-services architecture in mind.  I wanted to have the ability to quickly expand the system to add new
+			languages into the stack, or add new areas of functionality without having to redeploy/retest other parts of the system
+			that are not affected by the changes I am working on. 
+		</p>
+		<p>
+			One of the design goals for the microservices was to have them deployed in a serverless system so that I don't have to 
+			worry about scaling.  Fortunately AWS provides <a href="https://aws.amazon.com/lambda/" target="_blank">Lambda</a> exactly
+			for this purpose.
+		</p>
+		<p>
+			Lambda is a great framework to work with with a for a number of reasons:
+			<h2>Support for multiple languages</h2>
+			<p>
+				Lambda supports all of the languages we use at <a href="https://contextum-ml.com" target="_blank">Contextum</a> 
+				(c#, node.js, python) plus more (php, java, go).  This is great since we don't have to build infrastructure to support
+				all of our different modules and run them on separate platforms.
+			</p>
+			<p>
+				I will say this though:  .net core is "not quite there" yet.   It's a great idea, and both Microsoft and AWS
+				are making strides to support .net in lambda, but it is by far the most difficult language to work with in Lambda (IMHO).
+			</p>
+			<p>
+				And while Lambda is great for running python, you are definitely at the mercy of the Lambda AMI in terms of what libraries
+				are available.  Trying to deploy a function that uses sklearn or nltk is a non-trivial exercise.
+			</p>
+			<h2>Automatic Scalability</h2>
+			<p>
+				Lambda does not require you to worry about scaling out your code based on demand.  AWS provides some great tools for scaling
+				your code (ELB, ASG, CloudWatch metrics, SQS), but Lambda takes it to another level.  Simply upload your code.  AWS will scale
+				it up and down for you, and only charge you for the actual time your code is being executed.
+			</p>
+			<p>
+				In my mind this kind of change is as huge to infrastructure scaling as garbage collection was to memory management at the 
+				code level, and I anticipate a similar leap in developer productivity as a result. 
+			</p>
+			<h2>Automatic Logging</h2>
+			<p>
+				This one is near and dear to my heart.  I can not explain how many times I have had to implement logging from scratch,
+				and just how sick of doing that I am.
+			</p>
+			<p>
+				If you are familiar with <a href="https://12factor.net/logs" target="_blank">The Twelve-Factor App</a>, and specifically with
+				the approach to logs (treat them as event streams), you will probably agree that Lambda does it right.  simply log to the 
+				console (console.log in node.js, print in python, Console.WriteLine in c#) and Lambda takes care of shipping your log events
+				to CloudWatch, where they are fully search-able and time ordered.
+			</p>
+			<p>
+				Hopefully this means I will never write logging code again.
+			</p>
+			<h2>Fan Out</h2>
+			<p>
+				This one is not so much a feature of Lambda, but more of an architectural decision enabled by serverless microservices in general.
+			</p>
+			<p>
+				One thing that is always nice to have is the ability to write your persistence code once, and then have a pub/sub pattern
+				where you can add additional processors at a later date without updating your code.
+			</p>
+			<p>
+				One use case for this that I come across fairly frequently is auditing.  Almost all systems that grow to any level of 
+				complexity require, at some point or another, an audit trail of who did what to which thing and and what time.
+			</p>
+			<p>
+				While this may not be a consideration when you first start working on a system, it can easily be implemented later without 
+				re-architecting your code by using message patterns.  You know what, this is beyond the scope of this article.  
+				<a href="message-patterns.html">I'll write another one on this specific topic.</a>
+			</p>
+			<h2>Summary</h2>
+			<p>
+				Lambda is a great system for building serverless microservices, which can make your system easier to work with,
+				faster to get up and running, more resilient to failure and more efficient(read:cheaper) to run.
+			</p>
+		</p>
+	</div>
+</div>
