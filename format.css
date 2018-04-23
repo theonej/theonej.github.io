@@ -18,3 +18,7 @@ pre{
 	text-align: center;
 	margin:auto;
 }
+
+li{
+	line-height: 35px;
+}
