@@ -22,3 +22,8 @@ pre{
 li{
 	line-height: 35px;
 }
+
+.image{
+	width:25%;
+	float:left;
+}
