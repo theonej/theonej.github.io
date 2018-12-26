@@ -3,7 +3,7 @@ layout: default
 title: What is the business case for adopting functional programming?
 ---
 
-# Why functional programming (FP for the context of this post)?
+# What is the business case for adopting functional programming?
 
 This is not going to be another post about what FP is, and why it has comparitive advantages over some other styles.
 
@@ -44,7 +44,7 @@ most businesses I have worked for look something like this:
     R = revenue
     B = Time boundary for the go-live event
     H = Range of hours to examine on both sides of the go-live time boundary
-    P&#8242; - Profit after initiative
+    P &#39; - Profit after initiative
 
 First we calculate the total Costs (C) for the initiative
 
