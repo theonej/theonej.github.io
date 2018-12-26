@@ -23,7 +23,7 @@ The discussion on `Why use Functional Programming?` describes the mechanical and
 What I am hoping to do here is to discuss the financial advantages that can help make a more convincing
 argument for the adoption of some FP practices.
 
-##Financial Impact
+## Financial Impact
 It costs money to adopt functional practices in most cases.  There is usually the direct cost of bringing in a new team member that is familair
 and experienced with functional practices in a *production environment*.  NOTE: Candidates without production experience should be considered, but not 
 as change agents or leads on the project.
