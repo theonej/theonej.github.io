@@ -16,7 +16,7 @@ lists. Use map and reduce.` has some great examples of how to apply functions to
 popularity.
 
 [Lambdas in c++]([)https://medium.com/@DakshHub/lambdas-the-companion-of-modern-c-b7dfd43b5abb)
-![lambdas in c++](../../../img/c++lambdas.png) For fun, google `lambdas in c++` followed by `FP inc++`.  The results are geared towards very different audiences.
+For fun, google `lambdas in c++` followed by `FP inc++`.  The results are geared towards very different audiences.
 
 This article has a good section on the basics of FP, an explanation (and samples) of how c++ approaches FP.  
 The discussion on `Why use Functional Programming?` describes the mechanical and efficiency advantages of FP.  
