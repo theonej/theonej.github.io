@@ -37,14 +37,14 @@ read: `How does that make me more money?`
 And here is where I think the best case can be made for the business case to adopt FP practices.  The elements to the cost equations for 
 most businesses I have worked for look something like this:
 
-T = Time to revenue from concept
-D = dev team salaries/costs
-QA = A fraction ranging between 0 and &#8734; that represents the ration of QA engineers to developers
-I = Incremental profit from new initiative
-R = revenue
-B = Time boundary for the go-live event
-H = Range of hours to examine on both sides of the go-live time boundary
-P &#39; - Profit after initiative
+T = Time to revenue from concept  
+D = dev team salaries/costs  
+QA = A fraction ranging between 0 and &#8734; that represents the ration of QA engineers to developers  
+I = Incremental profit from new initiative  
+R = revenue  
+B = Time boundary for the go-live event  
+H = Range of hours to examine on both sides of the go-live time boundary  
+P &#39; - Profit after initiative  
 
 First we calculate the total Costs (C) for the initiative
 
