@@ -50,7 +50,7 @@ First we calculate the total Costs (C) for the initiative
 
     C = T(D + (TD * QA))
     
-Next we calculate the amount of profit that the initative recognizes by comparing tow timespans, which must be separated by a time boundry that represents the go-live time of the initiative.
+Next we calculate the amount of profit that the initative recognizes by comparing two timespans, which must be separated by a time boundry that represents the go-live time of the initiative.
 
     I = (R(B + H) - R(B - H)) - C
 
