@@ -73,7 +73,7 @@ Have you ever worked on a code base that behaved strangely?  Some of the common 
 
 The first three characteristics are all symptoms of a single problem: The code is understood by too few people.  The solution to all three of these symtoms is the same: Create small, self-contained modules that are tested on every build.  Modules can be classes, they can be services, they can be plugins.  The important part of modules is that they obey the single responsibility principal, and that their interaction with the larger system can be easily understood through their interface.  Once that is in place, spooky action within the system can be reduced.
 
-FP can help in this domain by the nature of it's structure.  The inability to render side-effects limits the amount of things that can be referenced usefully in a given function.  This characteristic makes functional code inherently testable.  Large swatchs of code that have many tendrils tend to be on the wrong end of the spectrum for testability by automation, requiring human QA.
+FP can help in this domain by the nature of it's structure.  The inability to render side-effects limits the amount of things that can be referenced usefully in a given function.  This characteristic makes functional code inherently testable.  Large swaths of code that have many tendrils tend to be on the wrong end of the spectrum for testability by automation, requiring human QA.
 
 The more testable your code is by automation, the lower the QA fraction of the Cost equation.  Direct cost impact.
 
