@@ -1,3 +1,8 @@
+---
+layout: default
+title: Why is naming things hard?
+---
+
 # On the death of variables
 
 Variables, specifically member variables, make my code less understandable and more complex.
