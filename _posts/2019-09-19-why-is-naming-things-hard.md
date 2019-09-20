@@ -3,7 +3,7 @@ layout: default
 title: Why is naming things hard?
 ---
 
-#Naming things is hard?
+# Naming things is hard?
 
 You have probably read [somehwere](https://martinfowler.com/bliki/TwoHardThings.html) that naming things is hard.
 
