@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Why is naming things hard?
+title: Death of Variables?
 ---
 
 # On the death of variables
