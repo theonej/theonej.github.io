@@ -12,8 +12,8 @@ I was doing a code review today, and came across a piece of code that I do not t
 I see this most frequently with to mid-level developers that are starting to use asynchronous patterns for the first time.
 
 Here's some example code:
-
-    `
+    
+    
         let ambiguousVariable = 0.0
 
         let doSynchronousWork = (anIdentifierThatMatters)=>{
@@ -34,17 +34,17 @@ Here's some example code:
                 }
             })
         }
-    `
+    
 
 There is a subtle problem here that becomes apparent with the following code:
 
-    ```
+    
         for(var iterations = 0; iterations < 100; iterations++){
             doSynchronousWork();
             Console.log("synchronousWork " + iterations + " completed");
         }
 
         Console.log("All synchronousWork completed");
-    ```
+    
 
     
