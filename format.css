@@ -7,7 +7,8 @@ p{
 	line-height: 35px;
     margin: 50px 0;
     font-size: x-large;
-    font-weight: 100;
+	font-weight: 100;
+	max-width:600px;
 }
 
 pre{
@@ -25,9 +26,4 @@ li{
 
 .image{
 	width:25%;
-}
-
-img{	
-	height:25%;
-	width:25%
 }
