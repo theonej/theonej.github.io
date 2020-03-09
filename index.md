@@ -2,7 +2,7 @@
 layout: main
 title: microp - automated hydroponic plant growth
 ---
-![jhenry-code](./img/logo.png)
+![jhenry-code](https://github.com/theonej/theonej.github.io/blob/master/img/logo.png)
 
 I am working on a project now where I am growing plants in vertically stacked hydroponic growers.  
 The nature of having vertically stacked planters means that there are a lot of plants in a small space that need to be tended to.
