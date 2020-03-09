@@ -1,0 +1,28 @@
+---
+layout: main
+title: microp - automated hydroponic plant growth
+---
+
+I am working on a project now where I am growing plants in vertically stacked hydroponic growers.  
+The nature of having vertically stacked planters means that there are a lot of plants in a small space that need to be tended to.
+The goal of the project is to automate the growing cycle to the extent possible. 
+
+This includes:
+- Watering
+- Feeding
+- Identifying Plant Maturity (is it ready to transplant?  ready to harvest?)
+- Identify plants in need of manual intervention
+- Provide a plant audit trail
+- Remote monitoring
+
+
+I will be documenting the build out of this system in a series of videos that you can find [here](https://www.youtube.com/channel/UCKxJtzngHDaC5C4nUigdzRw)
+
+The code will have projects including:
+- Computer Vision models in python
+- Services in Flask and nodejs
+- UI in Next.js
+- Terraform scripts for infrastructure in AWS
+- Lambdas for event processing in AWS
+- Automated drone control for camera movement and recording
+
