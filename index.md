@@ -4,7 +4,7 @@ title: Outcome Based Framework for Software Delivery
 ---
 # Outcome Based Framework for Software Delivery
 
-I have been working lately with several teams of geographically dispersed teams working on a large, distributed system for providing test execution environments at scale.
+I have been working lately with several geographically dispersed teams working on a large, distributed system for providing test execution environments at scale.
 
 One of the things I noticed at the beginning is that, due to the nature and history of the company, each team is very different in terms of skill, experience, culture and productivity.
 
