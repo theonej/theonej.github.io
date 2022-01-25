@@ -32,6 +32,24 @@ li{
 	width:15%;
 }
 
+a{
+	color:#da5006
+}
+
+a:hover{
+	color:#3f3f3f;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+a:visited{
+	color:#3f3f3f
+}
+
+a:active{
+	color:#da5006
+}
+
 a .small-image{
 	border:none;
 }
