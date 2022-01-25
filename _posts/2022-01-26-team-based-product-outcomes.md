@@ -2,13 +2,12 @@
 layout: default
 title: Team-Based Product Outcomes
 ---
-<img src="../../../../img/logo.png" class="small-image"/>
 
 # Team-Based Product Outcomes
 
 Once you have decided on your product outcomes at an organizational level, it's time to start talking to the teams about the outcomes they can impact within their product space.  The way in which teams can impact higher-level business goals will vary based on their scope, product, and capacity.
 
-#
+---
 
 ### <a name="understanding-how-teams-impact-the-business">Understanding How Teams Impact the Business</a>
 
@@ -23,7 +22,8 @@ If, after looking at the team's charter you still can't identify how the team's 
 - Have other commercial options, paid or open source, obviated the need for the team's product?
 
 It is important to work through these questions and have a clear understanding of the business impact that the team can contribute to before moving into defining outcomes.
-#
+
+---
 
 ### <a name="defining-product-outcomes-with-teams">Defining Product Outcomes with Teams</a>
 
@@ -56,7 +56,7 @@ The target tells us when we have been successful, and provides a benchmark again
 #### The UOM (Unit of Measure)
 The unit of measure is often overlooked, but is absolutely critical in pacing to goals.  The Unit of measure should usually be a time-based UOM (although I am sure there are other UOMs that could be used).  In this example we have `Q1 to Q3`, `YoY`, and `by Q2`.  Each UOM provides a clear amount of time that we are looking to spend on the outcome, and provides us visibility at all times how much time we have left to get to our stated goal for the outcome.
 
-#
+---
 
 It may take several iterations to negotiate the outcomes for the team.  Often the teams will have a very different idea of how to impact the higher-level business objectives than the team leaders, which is obviously a good thing.  
 

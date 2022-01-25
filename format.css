@@ -35,3 +35,9 @@ li{
 a .small-image{
 	border:none;
 }
+
+h4{
+	font-weight: bolder;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
