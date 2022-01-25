@@ -13,4 +13,4 @@ The scope of [Continuous Discovery Habbits](https://www.producttalk.org/) is bey
 
 Much of the framework we are using for our engineering groups is based on this Product approach.  What we have worked on as a compliment to these tools is the mechanics of how we introduce the concepts to the teams, how we empower them to make decisions that have real impact on the business, and putting in place a framework to allow them to think globally, act locally, and get meaningful, timely feedback.
 
-In the next post I will talk about **Team-Based Product Outcomes** and how we introduce the concepts to the teams.
+In the next post I will talk about **[Team-Based Product Outcomes](/2022/01/26/team-based-product-outcomes)** and how we introduce the concepts to the teams.

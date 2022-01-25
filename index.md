@@ -2,7 +2,6 @@
 layout: main
 title: microp - automated hydroponic plant growth
 ---
-![jhenry-code](./img/logo.png)
 # Outcome Based Framework for Software Delivery
 
 I have been working lately with several teams of geographically dispersed teams working on a large, distributed system for providing test execution environments at scale.
@@ -16,9 +15,9 @@ Working with my Product counterpart [Mike Donovan](https://www.linkedin.com/in/m
 I will be laying out the framework in a series of posts here, roughly breaking down into the following parts:
 
 - **[What Are Product Outcomes?](/2022/01/25/what-are-product-outcomes)**  
-- **Team-Based Product Outcomes**  
-  - **Understanding How Teams Impact the Business**    
-  - **Defining Product Outcomes with Teams**   
+- **[Team-Based Product Outcomes](/2022/01/26/team-based-product-outcomes)**  
+  - **[Understanding How Teams Impact the Business](/2022/01/26/team-based-product-outcomes#understanding-how-teams-impact-the-business)**    
+  - **[Defining Product Outcomes with Teams](/2022/01/26/team-based-product-outcomes#defining-product-outcomes-with-teams)**   
 
 - **Targets**  
   - **Tracking Metrics**   

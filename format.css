@@ -31,3 +31,7 @@ li{
 .small-image{
 	width:15%;
 }
+
+a .small-image{
+	border:none;
+}
