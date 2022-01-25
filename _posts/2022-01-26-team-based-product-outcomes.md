@@ -31,15 +31,19 @@ Once a team has identified some opportunities that ladder up to higher-level bus
 
 Example:
 ```
+
 The business has aligned on a goal of increasing ARR by 25% YoY.
+
 ```
 
 Most teams will not have the scope to impact this goal in it's entirety, except at very small companies with one or two product lines.  Given that the team wants to create achievable outcomes that can contribute to the larger goal, they might identify the following outcomes:
 
 ```
+
 1: Increase MAU by 25% from Q1 to Q3
 2: Increase the number of new user signups by 50% YoY
 3: Decrease the number of users who cancel their service by 15% YoY by Q2
+
 ```
 
 There are four important components of each goal that are worth understanding: **The Directional Component**, **The Primary Metric**, **The Target**, and **The UOM**.
