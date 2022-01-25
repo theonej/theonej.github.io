@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: default
 title: What are Product Outcomes
 ---
 <img src="../../../../img/logo.png" class="small-image"/>
