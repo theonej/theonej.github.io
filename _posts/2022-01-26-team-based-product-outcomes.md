@@ -13,7 +13,7 @@ Once you have decided on your product outcomes at an organizational level, it's 
 
 It's important at the beginning to find the strong relationships between the opportunities that the team thinks they can impact, and the outcomes for the business as a whole.  Having a true "North Star" for their outcomes informs the rest of the decisions they make when it comes to outcome planning.  Weak connections to higher-level business goals hurts the alignment of the team to the business, and can lead to cancelled projects or changes in direction.
 
-If you are having trouble identifying how a team can impact the business, you may want to go back and look at the [teams charter](Defining Product Outcomes with Teams), which was presumably created at some point early in the team's history, and should lay out exactly what the team's value to the business is.  
+If you are having trouble identifying how a team can impact the business, you may want to go back and look at the [teams charter](https://monday.com/blog/teamwork/team-charter/){:target="_blank"}, which was presumably created at some point early in the team's history, and should lay out exactly what the team's value to the business is.  
 
 If, after looking at the team's charter you still can't identify how the team's product can ladder up to the agreed-upon business objects, it may be time for some hard questions.  
 

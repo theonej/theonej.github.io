@@ -10,7 +10,7 @@ One of the things I noticed at the beginning is that, due to the nature and hist
 
 In the beginning I tried treating each team as having unique needs for how I could communicate the needs and expectations of the business, based on the people on the team.  This turned out not to work so well.  Not only was the cognitive load of having a unique approach for each team too much complexity for me to manage, but it led to dissatisfaction within the teams due to lack of clarity and consistency.
 
-Working with my Product counterpart [Mike Donovan](https://www.linkedin.com/in/michaeldonovan2/), we decided to use a framework built on top of the [Continuous Discovery](https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309) model.  Starting with the premise that were going to use Product Outcomes as our measure of success for our efforts, we have developed a framework that empowers teams to determine how their work supports the business, and define the criteria upon which they are evaluated.
+Working with my Product counterpart [Mike Donovan](https://www.linkedin.com/in/michaeldonovan2/){:target="_blank"}, we decided to use a framework built on top of the [Continuous Discovery](https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309){:target="_blank"} model.  Starting with the premise that were going to use Product Outcomes as our measure of success for our efforts, we have developed a framework that empowers teams to determine how their work supports the business, and define the criteria upon which they are evaluated.
 
 I will be laying out the framework in a series of posts here, roughly breaking down into the following parts:
 

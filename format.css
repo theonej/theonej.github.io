@@ -59,3 +59,12 @@ h4{
 	text-decoration: underline;
 	text-underline-offset: 3px;
 }
+
+code{
+	padding: 25px;
+	background-color:antiquewhite;
+}
+
+pre{
+	background-color: transparent;
+}
