@@ -15,7 +15,7 @@ Working with my Product counterpart [Mike Donovan](https://www.linkedin.com/in/m
 
 I will be laying out the framework in a series of posts here, roughly breaking down into the following parts:
 
-- **What Are Product Outcomes**  
+- **[What Are Product Outcomes?](/2022/01/25/what-are-product-outcomes)**  
 - **Team-Based Product Outcomes**  
   - **Understanding How Teams Impact the Business**    
   - **Defining Product Outcomes with Teams**   
