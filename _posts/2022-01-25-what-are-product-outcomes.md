@@ -1,5 +1,6 @@
+---
 layout: main
-title: microp - automated hydroponic plant growth
+title: What are Product Outcomes
 ---
 ![jhenry-code](../img/logo.png)
 # What Are Product Outcomes?
