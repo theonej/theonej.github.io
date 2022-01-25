@@ -2,7 +2,7 @@
 layout: main
 title: What are Product Outcomes
 ---
-![jhenry-code](../img/logo.png)
+<img src="../../../../img/logo.png" class="small-image"/>
 # What Are Product Outcomes?
 
 For most of my career, I have worked in companies where software delivery is measured in terms of Outputs.  Outputs are normally thought of as the features released by the development teams and sold to customers.
