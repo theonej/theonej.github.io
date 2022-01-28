@@ -66,4 +66,4 @@ It may take several iterations to negotiate the outcomes for the team.  Often th
 
 ## Negotiating the outcomes that best support the business while playing to the team's strengths and empowering the team to find solutions strengthens the buy-in from all participants.
 
-In the next post, I'll dive into the technical aspects of defining Targets, including tracking metrics, mapping targets to times (and specifically not to dates), tracking progress, communicating risk, and providing visibility.
+In the [next post](/2022/01/28/targets), I'll dive into the technical aspects of defining Targets, including tracking metrics, mapping targets to times (and specifically not to dates), tracking progress, communicating risk, and providing visibility.

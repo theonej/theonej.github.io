@@ -19,12 +19,11 @@ I will be laying out the framework in a series of posts here, roughly breaking d
   - **[Understanding How Teams Impact the Business](/2022/01/26/team-based-product-outcomes#understanding-how-teams-impact-the-business)**    
   - **[Defining Product Outcomes with Teams](/2022/01/26/team-based-product-outcomes#defining-product-outcomes-with-teams)**   
 
-- **Targets**  
-  - **Tracking Metrics**   
-  - **Mapping Targets to Times**   
-  - **Tracking Progress to Targets**
-  - **Identifying and Communicating Risks**
-  - **Providing Visibility**
+- **[Targets](/2022/01/28/targets)**  
+  - **[Tracking Metrics](/2022/01/28/targets#tracking-metrics)**   
+  - **[Mapping Targets to Times](/2022/01/28/targets#mapping-targets-to-times)**   
+  - **[Tracking Progress to Targets](/2022/01/28/targets#tracking-progress-to-targets)**
+  - **[Identifying and Communicating Risks](/2022/01/28/targets#identifying-and-communicating-risks)**
 
 - **Cadences**
   - **Department Outcome Planning Cadence**
