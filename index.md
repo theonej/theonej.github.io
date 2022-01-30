@@ -25,12 +25,12 @@ I will be laying out the framework in a series of posts here, roughly breaking d
   - **[Tracking Progress to Targets](/2022/01/28/targets#tracking-progress-to-targets)**
   - **[Identifying and Communicating Risks](/2022/01/28/targets#identifying-and-communicating-risks)**
 
-- **Cadences**
-  - **Department Outcome Planning Cadence**
-  - **Team Planning and Refinement Cadence**
-  - **Team Outcome Tracking Cadence**
-  - **Leadership Cadence**
-  - **Feedback Loops**
+- **[Cadences](/2022/01/28/cadences)**
+  - **[Department Outcome Planning Cadence](/2022/01/28/targets#department-outcome-planning-cadence)**
+  - **[Team Planning and Refinement Cadence](/2022/01/28/cadences#team-planning-and-refinement-cadence)**
+  - **[Team Outcome Tracking Cadence](/2022/01/28/cadences#team-outcome-tracking-cadence)**
+  - **[Leadership Cadence](/2022/01/28/cadences#leadership-cadence)**
+  - **[Feedback Loops](/2022/01/28/cadences#feedback-loops)**
 
 - **Work Stream and Process**
   - **Product and Engineering Reward Functions**
