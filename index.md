@@ -3,6 +3,12 @@ layout: main
 title: Outcome Based Framework for Software Delivery
 ---
 # Outcome Based Framework for Software Delivery
+ 
+*If you want to build a ship, don't drum up the men to gather wood, divide the work, and give orders. Instead, teach them to yearn for the vast and endless sea.*
+
+— *Antoine de Saint-Exupéry*
+
+---
 
 I have been working lately with several geographically dispersed teams working on a large, distributed system for providing test execution environments at scale.
 
@@ -32,12 +38,10 @@ I will be laying out the framework in a series of posts here, roughly breaking d
   - **[Leadership Cadence](/2022/01/30/cadences#leadership-cadence)**
   - **[Feedback Loops](/2022/01/30/cadences#feedback-loops)**
 
-- **Work Stream and Process**
-  - **Product and Engineering Reward Functions**
-  - **Work Stream Design**
-  - **Process Design**
-  - **Refinement**
-  - **Ambulance Lanes**
-  - **Investment Budgets**
+- **[Work Stream and Process](/2022/02/08/work-stream-and-process)**
+  - **[Product and Engineering Reward Functions](/2022/02/08/work-stream-and-process#product-and-engineering-reward-functions)**
+  - **[Work Stream Design](/2022/02/08/work-stream-and-process#work-stream-design)**
+  - **[Process Design](/2022/02/08/work-stream-and-process#process-design)**
+  - **[Investment Budgets](/2022/02/08/work-stream-and-process#investment-budgets)**
 
 
