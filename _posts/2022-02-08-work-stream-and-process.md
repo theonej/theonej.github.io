@@ -43,7 +43,7 @@ Discussing these questions on a regular basis is important to ensure that the wo
 
 ### <a name="process-design">Process Design</a>
 
-Once we have designed the way in which work is introduced into and ingested by the team, that process should inform the process design for the team that enables work to be done, while enabling a healthy team culture.
+Once we have designed the way in which work is introduced into and ingested by the team, that design should inform the process design for the team that enables work to be done, while enabling a healthy team culture.
 
 The types of work that are being ingested by the team should be regularly discussed to determine if the amount of inbound work that is not directly related to outcomes is reasonable, or if it is in danger of impacting the teams ability to achieve their outcomes.
 
