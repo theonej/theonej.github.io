@@ -9,7 +9,7 @@ You have probably read [somehwere](https://martinfowler.com/bliki/TwoHardThings.
 
 I was slacking with one of the guys I work with, who I really respect, about naming things.  He was reading some node code his team wrote ~ 6 months ago, and he was auditing it for a new initiative.
 
-At one point he slacked me something like `holly shit.  there's litterally a variable here named 'variable'`.  We had a good laugh about naming things, but it got me thinking.
+At one point he slacked me something like `holy shit.  there's litterally a variable here named 'variable'`.  We had a good laugh about naming things, but it got me thinking.
 
 Why is naming things hard?  I mean, we're just assigning a name to something so we can reference it later.
 
