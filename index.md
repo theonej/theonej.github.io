@@ -1,47 +1,115 @@
 ---
-layout: main
-title: Outcome Based Framework for Software Delivery
----
-# Outcome Based Framework for Software Delivery
- 
-*If you want to build a ship, don't drum up the men to gather wood, divide the work, and give orders. Instead, teach them to yearn for the vast and endless sea.*
-
-— *Antoine de Saint-Exupéry*
-
+layout: default
+title: Creating a text embedding model with keras
 ---
 
-I have been working lately with several geographically dispersed teams working on a large, distributed system for providing test execution environments at scale.
+# Vector Text Embeddings
 
-One of the things I noticed at the beginning is that, due to the nature and history of the company, each team is very different in terms of skill, experience, culture and productivity.
+##### NOTE:
+This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques
 
-In the beginning I tried treating each team as having unique needs for how I could communicate the needs and expectations of the business, based on the people on the team.  This turned out not to work so well.  Not only was the cognitive load of having a unique approach for each team too much complexity for me to manage, but it led to dissatisfaction within the teams due to lack of clarity and consistency.
+## Summary
 
-Working with my Product counterpart [Mike Donovan](https://www.linkedin.com/in/michaeldonovan2/){:target="_blank"}, we decided to use a framework built on top of the [Continuous Discovery](https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309){:target="_blank"} model.  Starting with the premise that were going to use Product Outcomes as our measure of success for our efforts, we have developed a framework that empowers teams to determine how their work supports the business, and define the criteria upon which they are evaluated.
+With the recent popularity of vector databases, vector embeddings are being used in a new set of applications that use vectors of numbers to represent many different types of data, from documents to images to time series data.  Using these vector embeddings, similarity searches can then be performed that will find approximate results (see [ANN](https://towardsdatascience.com/comprehensive-guide-to-approximate-nearest-neighbors-algorithms-8b94f057d6b6) for details).
 
-I will be laying out the framework in a series of posts here, roughly breaking down into the following parts:
+When the data you want to represent is a text document, you need a way to convert your text into a vector of numbers so it can be used for searching.  Vector embeddings of text are an interesting topic, that is outside of the scope of this post, but you can learn more about the nitty gritty details [here](https://www.tensorflow.org/text/tutorials/word2vec).
 
-- **[What Are Product Outcomes?](/2022/01/25/what-are-product-outcomes)**  
-- **[Team-Based Product Outcomes](/2022/01/26/team-based-product-outcomes)**  
-  - **[Understanding How Teams Impact the Business](/2022/01/26/team-based-product-outcomes#understanding-how-teams-impact-the-business)**    
-  - **[Defining Product Outcomes with Teams](/2022/01/26/team-based-product-outcomes#defining-product-outcomes-with-teams)**   
+Tensorflow provides a very easy way to create text embeddings, based on any corpus of text that you want to represent, in a matter of minutes.  Once you create the embedding model, it can be used in your software to create embeddings that will work with popular vector databases like [Milvus](https://milvus.io) abnd [Pinecone](https://www.pinecone.io/). 
 
-- **[Targets](/2022/01/28/targets)**  
-  - **[Tracking Metrics](/2022/01/28/targets#tracking-metrics)**   
-  - **[Mapping Targets to Times](/2022/01/28/targets#mapping-targets-to-times)**   
-  - **[Tracking Progress to Targets](/2022/01/28/targets#tracking-progress-to-targets)**
-  - **[Identifying and Communicating Risks](/2022/01/28/targets#identifying-and-communicating-risks)**
+## Code
 
-- **[Cadences](/2022/01/30/cadences)**
-  - **[Department Outcome Planning Cadence](/2022/01/30/cadences#department-outcome-planning-cadence)**
-  - **[Team Planning and Refinement Cadence](/2022/01/30/cadences#team-planning-and-refinement-cadence)**
-  - **[Team Outcome Tracking Cadence](/2022/01/30/cadences#team-outcome-tracking-cadence)**
-  - **[Leadership Cadence](/2022/01/30/cadences#leadership-cadence)**
-  - **[Feedback Loops](/2022/01/30/cadences#feedback-loops)**
+All of the code for this post can be found [here](https://github.com/theonej/theonej.github.io/tree/master/code/text-embeddings-with-keras).
 
-- **[Work Stream and Process](/2022/02/08/work-stream-and-process)**
-  - **[Product and Engineering Reward Functions](/2022/02/08/work-stream-and-process#product-and-engineering-reward-functions)**
-  - **[Work Stream Design](/2022/02/08/work-stream-and-process#work-stream-design)**
-  - **[Process Design](/2022/02/08/work-stream-and-process#process-design)**
-  - **[Investment Budgets](/2022/02/08/work-stream-and-process#investment-budgets)**
+The first thing to do is to get a text corpus (vocabulary) to train your model on.  I used the [booksum](https://www.tensorflow.org/datasets/catalog/booksum) dataset from tensorflow, and just picked a chapter at random.  
+
+The directory structure for the project is:
+
+- data
+    - book_summaries
+        - chapter_10.txt
+- models
+     - definitions
+     - trained
+- repositories
+- main.py
+- requirements.txt
+
+Once you have the text corpus in the **book_summaries** directory, the next step is to create a repository to fetch and clean the text so it can be used by the vectorization model.  The following code creates a repository in the **repositories** directory that loads the vocabulary data, removes the line endings in text, and remove any entries that consist of only line endings.  The code looks like this:
 
 
+```
+def get_vocabulary(vocabulary_path):
+    vocabulary_array = open(vocabulary_path).readlines()
+
+    vocabulary = clean_vocabulary(vocabulary_array)
+
+    return vocabulary
+
+def clean_vocabulary(vocabulary_array):
+    vocabulary_array = list(map(lambda text: remove_newlines(text), vocabulary_array))
+    vocabulary_array = list(filter(lambda text: text != '', vocabulary_array))
+
+    return vocabulary_array
+
+def remove_newlines(text):
+    text = text.replace('\n', '')
+
+    return text
+```
+Once you have the repository in place, you're ready to create the model that will use the vocabulary to create the embeddings.  In the **models/definitions** directory, create a file named text_vector_model.py.  This model will create a simple Sequential model with a single TextVectorization layer and will use the TextVectorization layer to ingest the vocabulary to create the embeddings.  the code looks like this:
+
+```
+import tensorflow as tf
+from keras.layers import TextVectorization
+from keras import Input
+from keras.models import Sequential
+
+def create_text_vectorization_model(vocabulary):
+    
+    vector_layer = TextVectorization(
+        output_mode ='int'
+    )
+
+    vocab_dataset = tf.data.Dataset.from_tensor_slices(vocabulary)
+    vector_layer.adapt(vocab_dataset)
+
+    input = Input(shape=(1,), dtype=tf.string)
+    
+    model = Sequential()
+
+    model.add(input)
+    model.add(vector_layer)
+
+    return model
+```
+
+The next step is to pull it all together to load the vocabulary, train the model and save the model so it can be used later.  Create a file in the root of your project called main.py.  This file will load the vocabulary from the data directory, create the model using the vocabulary, and then test the model to create a few vector embeddings of some sample sentences.
+
+The code looks like this:
+
+```
+from repositories.vocabulary_repository import get_vocabulary
+from models.definitions.text_vector_model import create_text_vectorization_model
+
+def train_vector_embeddings_model():
+    vocabulary = get_vocabulary(vocabulary_path='./data/book_summaries/chapter_10.txt')
+
+    model = create_text_vectorization_model(vocabulary=vocabulary)
+    model.save('./models/trained/text_vector_model', save_format='tf')
+
+    text_input = [
+        ['please vectorize this sentence'],
+        ['this is another sentence that I would like to vectorize.  it is much longer']
+    ]
+
+    embeddings = model.predict(text_input)
+    print(embeddings)
+
+train_vector_embeddings_model()
+```
+
+And that's it.  
+
+If you look in the **models/trained** directory, you'll see the files that represent the trained model (which can later be loaded and used to create vector embeddings, which I will post about in the next installment).
+
+I hope this was helpful.  If I messed anything up or there is a better way to do it, I'd love to hear from you at [j.henry@jhenrycode.com](mailto:j.henry@jhenrycode.com)
