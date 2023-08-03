@@ -24,6 +24,10 @@ pre{
 	margin:auto;
 }
 
+.notes{
+ font-size: initial;
+}
+
 li{
 	line-height: 35px;
 }

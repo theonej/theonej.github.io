@@ -6,7 +6,7 @@ title: Creating a text embedding model with keras
 # Vector Text Embeddings
 
 ##### NOTE:
-This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques
+This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques {#identifier .notes}
 
 ## Summary
 
