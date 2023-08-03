@@ -1,6 +1,8 @@
 body, html{
 	font-family: 'Raleway', sans-serif;
 	padding:25px 50px;
+	width:1024px;
+	margin:auto;
 }
 
 p{
