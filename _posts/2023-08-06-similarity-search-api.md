@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Creating a text embedding model with keras
+title: Adding an API layer for the embedding model
 ---
 
 # Vector Text Embeddings
