@@ -1,7 +1,7 @@
 import tensorflow as tf
 from keras.layers import TextVectorization
 from keras import Input
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 
 def create_text_vectorization_model(vocabulary):
     
@@ -18,5 +18,11 @@ def create_text_vectorization_model(vocabulary):
 
     model.add(input)
     model.add(vector_layer)
+
+    return model
+
+def get_trained_text_vectorization_model(model_path):
+
+    model = load_model(model_path)
 
     return model
