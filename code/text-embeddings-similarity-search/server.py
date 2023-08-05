@@ -9,6 +9,8 @@ app = FastAPI()
 def index_document(document:DocumentInfo):
     handler = DocumentCommandHandlers()
 
+    print(document)
+    
     embeddings = handler.handle_index_document_command(document)
     print(embeddings)
     
