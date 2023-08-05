@@ -6,7 +6,7 @@ title: Creating a text embedding model with keras
 # Vector Text Embeddings
 
 ##### NOTE:
-This post is the second in a series that outlines how to build a search engine for fast similartiy search using vector databases and vector embedding techniques
+This post is the second in a series that outlines how to build a search engine for fast similarity search using vector databases and vector embedding techniques
 
 ## Summary
 
@@ -29,7 +29,7 @@ The directory structure for this API builds on the last one, and adds a few new 
 
 You should notice that the `main.py` file was renamed to `train_model.py` and that a new `server.py` file was added.  This will act as the entry point to the API.
 
-In server API, a single method is defined using the FastAPI framework that accepts a DocumentInfo object (more on that in a bit), calls a command handler to create the embeddings and then returns the embeddings.
+In `server.py`, a single method is defined using the FastAPI framework that accepts a `DocumentInfo` object (more on that in a bit), calls a command handler to create the embeddings, and then returns the embeddings.
 
 It should be pointed out that this method returns a `201 [created]` status code.  The code for `server.py` looks like this:
 
@@ -51,7 +51,7 @@ def index_document(document:DocumentInfo):
 
 ```
 
-The `DocumentInfo` class is defined in the `type_definitions/document_info.py` file.  It has three properties (`name`, `text`, and `url`), and one method (`get_terms`).  The url field can be used if you are getting embeddings for a document that has a URI that cen be used to retrieve the full document.  The `get_terms` method returns the document text as an array of text terms.  The code looks like this:
+The `DocumentInfo` class is defined in the `type_definitions/document_info.py` file.  It has three properties (`name`, `text`, and `url`), and three methods (`get_terms`, `clean_text`, and `remove_newlines`).  The url field can be used if you are getting embeddings for a document that has a URI that cen be used to retrieve the full document.  The `get_terms` method returns the document text as an array of text terms.  The code looks like this:
 
 ```
 from pydantic import BaseModel
