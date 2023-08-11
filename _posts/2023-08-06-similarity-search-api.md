@@ -3,7 +3,7 @@ layout: default
 title: Adding an API layer for the embedding model
 ---
 
-# Vector Text Embeddings
+# Vector Text Embeddings API
 
 ##### NOTE:
 This post is the second in a series that outlines how to build a search engine for fast similarity search using vector databases and vector embedding techniques
