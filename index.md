@@ -6,7 +6,7 @@ title: Creating a text embedding model with keras
 # Vector Text Embeddings
 
 ##### NOTE:
-This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques {#identifier .notes}
+This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques
 
 ## Summary
 
@@ -18,7 +18,7 @@ Tensorflow provides a very easy way to create text embeddings, based on any corp
 
 ## Code
 
-All of the code for this post can be found [here](https://github.com/theonej/theonej.github.io/tree/master/code/text-embeddings-with-keras).
+All of the code for this post can be found [here](https://github.com/theonej/theonej.github.io/tree/master/code/text-embeddings-similarity-search).
 
 The first thing to do is to get a text corpus (vocabulary) to train your model on.  I used the [booksum](https://www.tensorflow.org/datasets/catalog/booksum) dataset from tensorflow, and just picked a chapter at random.  
 
@@ -111,5 +111,7 @@ train_vector_embeddings_model()
 And that's it.  
 
 If you look in the **models/trained** directory, you'll see the files that represent the trained model (which can later be loaded and used to create vector embeddings, which I will post about in the next installment).
+
+## Conculstion
 
 I hope this was helpful.  If I messed anything up or there is a better way to do it, I'd love to hear from you at [j.henry@jhenrycode.com](mailto:j.henry@jhenrycode.com)
