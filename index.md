@@ -1,117 +1,144 @@
 ---
 layout: default
-title: Creating a text embedding model with keras
+title: Adding an API layer for the embedding model
 ---
 
 # Vector Text Embeddings
 
 ##### NOTE:
-This post is the first in a series that will outline how to build a search engine for fast similartiy search using vector databases and vector embedding techniques
+This post is the second in a series that outlines how to build a search engine for fast similarity search using vector databases and vector embedding techniques
 
 ## Summary
 
-With the recent popularity of vector databases, vector embeddings are being used in a new set of applications that use vectors of numbers to represent many different types of data, from documents to images to time series data.  Using these vector embeddings, similarity searches can then be performed that will find approximate results (see [ANN](https://towardsdatascience.com/comprehensive-guide-to-approximate-nearest-neighbors-algorithms-8b94f057d6b6) for details).
-
-When the data you want to represent is a text document, you need a way to convert your text into a vector of numbers so it can be used for searching.  Vector embeddings of text are an interesting topic, that is outside of the scope of this post, but you can learn more about the nitty gritty details [here](https://www.tensorflow.org/text/tutorials/word2vec).
-
-Tensorflow provides a very easy way to create text embeddings, based on any corpus of text that you want to represent, in a matter of minutes.  Once you create the embedding model, it can be used in your software to create embeddings that will work with popular vector databases like [Milvus](https://milvus.io) abnd [Pinecone](https://www.pinecone.io/). 
+In the [previous post](/2023/08/03/text-embeddings-with-keras) I showed how you can create a vector embedding model using [Keras](https://keras.io/).  In this post, I'll build a simple API layer using [FastAPI](https://fastapi.tiangolo.com/), wich is a great framework for high-performance APIs built in python.
 
 ## Code
 
-All of the code for this post can be found [here](https://github.com/theonej/theonej.github.io/tree/master/code/text-embeddings-similarity-search).
-
-The first thing to do is to get a text corpus (vocabulary) to train your model on.  I used the [booksum](https://www.tensorflow.org/datasets/catalog/booksum) dataset from tensorflow, and just picked a chapter at random.  
-
-The directory structure for the project is:
+The directory structure for this API builds on the last one, and adds a few new leaves:
 
 - data
-    - book_summaries
-        - chapter_10.txt
+- handlers
 - models
      - definitions
      - trained
 - repositories
-- main.py
+- type_definitions
+- train_model.py
+- server.py
 - requirements.txt
 
-Once you have the text corpus in the **book_summaries** directory, the next step is to create a repository to fetch and clean the text so it can be used by the vectorization model.  The following code creates a repository in the **repositories** directory that loads the vocabulary data, removes the line endings in text, and remove any entries that consist of only line endings.  The code looks like this:
+You should notice that the `main.py` file was renamed to `train_model.py` and that a new `server.py` file was added.  This will act as the entry point to the API.
 
+In `server.py`, a single method is defined using the FastAPI framework that accepts a `DocumentInfo` object (more on that in a bit), calls a command handler to create the embeddings, and then returns the embeddings.
 
-```
-def get_vocabulary(vocabulary_path):
-    vocabulary_array = open(vocabulary_path).readlines()
-
-    vocabulary = clean_vocabulary(vocabulary_array)
-
-    return vocabulary
-
-def clean_vocabulary(vocabulary_array):
-    vocabulary_array = list(map(lambda text: remove_newlines(text), vocabulary_array))
-    vocabulary_array = list(filter(lambda text: text != '', vocabulary_array))
-
-    return vocabulary_array
-
-def remove_newlines(text):
-    text = text.replace('\n', '')
-
-    return text
-```
-Once you have the repository in place, you're ready to create the model that will use the vocabulary to create the embeddings.  In the **models/definitions** directory, create a file named text_vector_model.py.  This model will create a simple Sequential model with a single TextVectorization layer and will use the TextVectorization layer to ingest the vocabulary to create the embeddings.  the code looks like this:
+It should be pointed out that this method returns a `201 [created]` status code.  The code for `server.py` looks like this:
 
 ```
-import tensorflow as tf
-from keras.layers import TextVectorization
-from keras import Input
-from keras.models import Sequential
+from fastapi import FastAPI
+from type_definitions.document_info import DocumentInfo
+from handlers.document_command_handlers import DocumentCommandHandlers
 
-def create_text_vectorization_model(vocabulary):
+app = FastAPI()
+
+@app.post("/documents", status_code=201)
+def index_document(document:DocumentInfo):
+    handler = DocumentCommandHandlers()
+
+    embeddings = handler.handle_index_document_command(document)
+    print(embeddings)
     
-    vector_layer = TextVectorization(
-        output_mode ='int'
-    )
+    return {"embeddings":embeddings.tolist()}
 
-    vocab_dataset = tf.data.Dataset.from_tensor_slices(vocabulary)
-    vector_layer.adapt(vocab_dataset)
-
-    input = Input(shape=(1,), dtype=tf.string)
-    
-    model = Sequential()
-
-    model.add(input)
-    model.add(vector_layer)
-
-    return model
 ```
 
-The next step is to pull it all together to load the vocabulary, train the model and save the model so it can be used later.  Create a file in the root of your project called main.py.  This file will load the vocabulary from the data directory, create the model using the vocabulary, and then test the model to create a few vector embeddings of some sample sentences.
+The `DocumentInfo` class is defined in the `type_definitions/document_info.py` file.  It has three properties (`name`, `text`, and `url`), and three methods (`get_terms`, `clean_text`, and `remove_newlines`).  The url field can be used if you are getting embeddings for a document that has a URI that cen be used to retrieve the full document.  The `get_terms` method returns the document text as an array of text terms.  The code looks like this:
+
+```
+from pydantic import BaseModel
+
+class DocumentInfo(BaseModel):
+
+    name : str
+    url : str
+    text : str
+    
+    def get_terms(self):
+        term_array = self.clean_text(self.text)
+
+        return term_array
+
+    def clean_text(self, text_to_clean):
+        term_array = text_to_clean.split(' ')
+        
+        term_array = list(map(lambda text: self.remove_newlines(text), term_array))
+        term_array = list(filter(lambda text: text != '', term_array))
+
+        return term_array
+
+    def remove_newlines(self, text):
+        text = text.replace('\n', '')
+
+        return text
+```
+
+The next file is the command handler class that accpets the DocumentInfo object and creates the embeddings.  This code is created as a class so that the model, which can be expensive to inistantiate, can be reused without penalty (you could also create the model as a singleton object, but that seems excessive for this toy example).
+
+The `DocumentCommandHandlers` class has a single method: `handle_index_document_command`, wich gets the document terms, uses the trained model to predict the embeddings, and then squeezes the result to reshape it from a matrix with a single column into a flattened array.
 
 The code looks like this:
 
 ```
-from repositories.vocabulary_repository import get_vocabulary
-from models.definitions.text_vector_model import create_text_vectorization_model
+from models.definitions.text_vector_model import get_trained_text_vectorization_model
+from type_definitions.document_info import DocumentInfo
+import numpy as np
 
-def train_vector_embeddings_model():
-    vocabulary = get_vocabulary(vocabulary_path='./data/book_summaries/chapter_10.txt')
+MODEL_PATH = './models/trained/text_vector_model'
 
-    model = create_text_vectorization_model(vocabulary=vocabulary)
-    model.save('./models/trained/text_vector_model', save_format='tf')
+class DocumentCommandHandlers:
+    def __init__(self):
+        self.model = get_trained_text_vectorization_model(MODEL_PATH)
 
-    text_input = [
-        ['please vectorize this sentence'],
-        ['this is another sentence that I would like to vectorize.  it is much longer']
-    ]
+    def handle_index_document_command(self, document:DocumentInfo):
+        
+        terms = document.get_terms()
+        prediction = self.model.predict(terms)
 
-    embeddings = model.predict(text_input)
-    print(embeddings)
+        embedding = np.array(prediction).squeeze()
 
-train_vector_embeddings_model()
+        return embedding
 ```
 
-And that's it.  
+That's all there is to it.  If you run `uvicorn server:app --reload --port 10000` and send a POST command to `0.0.0.0:10000/documents`, with the following json:
+```
+{
+  "name":"test-document",
+  "url":"https://blog.jhenrycode.com",
+  "text": "this is the contents of a document that I want indexed"
+}
+```
 
-If you look in the **models/trained** directory, you'll see the files that represent the trained model (which can later be loaded and used to create vector embeddings, which I will post about in the next installment).
+you should get back a vector of integer embeddings that represent the document text, looking something like this (your values may vary, based on the corpus you chose to train on):
 
-## Conculstion
+```
+{
+  "embeddings": [
+    18,
+    50,
+    2,
+    1,
+    4,
+    8,
+    1,
+    11,
+    9,
+    1,
+    1
+  ]
+}
+```
+
+## Conclusion
+
+FastAPI is a light-weight, performant API framework for python that is very easy to get started with.  In the next post, we will enhance the API with a persistence layer for the embeddings, based on the [Milvus](https://milvus.io) vector database, wich will allow us to then perform a similarity search to find similar documents.
 
 I hope this was helpful.  If I messed anything up or there is a better way to do it, I'd love to hear from you at [j.henry@jhenrycode.com](mailto:j.henry@jhenrycode.com)
