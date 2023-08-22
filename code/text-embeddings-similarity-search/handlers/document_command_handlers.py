@@ -1,5 +1,7 @@
 from models.definitions.text_vector_model import get_trained_text_vectorization_model
 from type_definitions.document_info import DocumentInfo
+from repositories.milvus_embeddings_repository import  save_document_embeddings
+
 import numpy as np
 
 MODEL_PATH = './models/trained/text_vector_model'
@@ -15,4 +17,6 @@ class DocumentCommandHandlers:
 
         embedding = np.array(prediction).squeeze()
 
+        save_document_embeddings(document, embedding)
+        
         return embedding
