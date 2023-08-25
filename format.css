@@ -18,6 +18,7 @@ pre{
 	width:100%;
 
 	padding:25px;
+	text-wrap: balance;
 }
 .center{
 	text-align: center;
